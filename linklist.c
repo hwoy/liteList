@@ -3,7 +3,8 @@
 
 
 #define VERSION_MAJOR 1
-#define VERSION_MINOR 55
+#define VERSION_MINOR 0
+#define VERSION_SUBMINOR 0
 
 
 
@@ -15,10 +16,12 @@ l2_new (void)
 
 
 void
-l2_getversion (unsigned int *major, unsigned int *minor)
+l2_getversion (unsigned int *major, unsigned int *minor,
+	       unsigned int *subminor)
 {
   *major = VERSION_MAJOR;
   *minor = VERSION_MINOR;
+  *subminor = VERSION_SUBMINOR;
 }
 
 

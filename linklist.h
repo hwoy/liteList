@@ -21,7 +21,8 @@ typedef struct
 
 
 linklist *l2_new (void);
-void l2_getversion (unsigned int *major, unsigned int *minor);
+void l2_getversion (unsigned int *major, unsigned int *minor,
+		    unsigned int *subminor);
 assem *l2_init (assem * asmb, unsigned int id);
 
 linklist *l2_add (assem * asmb, linklist * lst);
