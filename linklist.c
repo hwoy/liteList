@@ -54,22 +54,6 @@ l2_add (assem * asmb, linklist * lst)
 }
 
 
-
-void
-l2_free (assem * asmb)
-{
-  linklist *tmp;
-  asmb->current = asmb->begin;
-  while (asmb->current)
-    {
-
-      tmp = asmb->current;
-      asmb->current = asmb->current->forw;
-      free (tmp);
-    }
-
-}
-
 void
 l2_freeall (assem * asmb)
 {
@@ -82,6 +66,7 @@ l2_freeall (assem * asmb)
       asmb->current = asmb->current->forw;
       free (tmp);
     }
+  asmb->begin = asmb->end = asmb->current = (linklist *) 0;
 }
 
 unsigned int
@@ -93,6 +78,8 @@ l2_numelement (assem * asmb)
 linklist *
 l2_findbyid (assem * asmb, unsigned int id)
 {
+  linklist *tmp2;
+  tmp2 = asmb->current;
   asmb->current = asmb->begin;
   while (asmb->current)
     {
@@ -102,6 +89,7 @@ l2_findbyid (assem * asmb, unsigned int id)
 	}
       asmb->current = asmb->current->forw;
     }
+  asmb->current = tmp2;
   return (0);
 }
 
@@ -148,6 +136,8 @@ int
 l2_delete (assem * asmb, unsigned int id)
 {
   linklist *tmp;
+  linklist *tmp2;
+  tmp2 = asmb->current;
   if (!(tmp = l2_findbyid (asmb, id)))
     {
       return (0);
@@ -178,6 +168,8 @@ l2_delete (assem * asmb, unsigned int id)
       asmb->current = asmb->current->forw;
     }
   free (tmp);
+
+  asmb->current = tmp2;
   return (1);
 }
 
@@ -185,6 +177,8 @@ int
 l2_insert (assem * asmb, linklist * lst, unsigned int id)
 {
   linklist *tmp;
+  linklist *tmp2;
+  tmp2 = asmb->current;
   if (!(tmp = l2_findbyid (asmb, id)))
     {
       return (0);
@@ -210,5 +204,7 @@ l2_insert (assem * asmb, linklist * lst, unsigned int id)
       asmb->current->id = asmb->current->prev->id + 1;
       asmb->current = asmb->current->forw;
     }
+
+  asmb->current = tmp2;
   return (1);
 }

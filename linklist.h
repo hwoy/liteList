@@ -28,9 +28,6 @@ assem *l2_init (assem * asmb, unsigned int id);
 linklist *l2_add (assem * asmb, linklist * lst);
 
 
-
-void l2_free (assem * asmb);
-
 void l2_freeall (assem * asmb);
 
 unsigned int l2_numelement (assem * asmb);
